@@ -1,0 +1,16 @@
+# runtime / secrets
+*.log
+*.tmp
+*.mp3
+*.wav
+.env
+.env.*
+
+# local outputs
+tmp/
+output/
+
+# macOS / editor
+.DS_Store
+.vscode/
+.idea/
