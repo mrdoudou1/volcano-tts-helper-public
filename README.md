@@ -14,6 +14,12 @@
   <strong>适合：</strong> OpenClaw 语音回复、陪伴感 TTS、情侣感语音、豆包 2.0 音色、本地 mp3 合成、可公开分享的 skill 模板
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/🗣️_Volcano_TTS-OpenClaw_Helper-ff6b6b?style=for-the-badge" alt="Volcano TTS Helper">
+  <img src="https://img.shields.io/badge/🎙️_Doubao_2.0-Voice_Workflow-7c3aed?style=for-the-badge" alt="Doubao 2.0">
+  <img src="https://img.shields.io/badge/💞_Companion_Voice-Friendly_Style-f59e0b?style=for-the-badge" alt="Companion Voice">
+</p>
+
 ---
 
 ## 🧭 目录
@@ -22,6 +28,7 @@
 [适用场景](#scenes) ·
 [核心特性](#features) ·
 [仓库结构](#structure) ·
+[README 预览区](#preview) ·
 [快速开始](#quickstart) ·
 [配置说明](#config) ·
 [豆包 2.0 用法](#doubao2) ·
@@ -192,6 +199,25 @@ volcano-tts-helper-public/
 <p align="right"><a href="#top">回到顶部</a></p>
 
 ---
+
+---
+
+<a id="preview"></a>
+
+## 🖼️ README 预览区
+
+这个项目目前先以文档和脚本为主，还没有单独整理截图资源。
+
+如果后面继续补，我建议这里可以放：
+
+- skill 目录结构截图
+- 本地合成脚本输出示例
+- OpenClaw 对话里调用火山 TTS 的实际效果图
+- 音色切换或 defaults.json 配置示例
+
+也可以把这里当成后续展示区，等素材齐了再补图片。
+
+<p align="right"><a href="#top">回到顶部</a></p>
 
 <a id="quickstart"></a>
 
