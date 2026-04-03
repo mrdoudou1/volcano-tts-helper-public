@@ -2,6 +2,11 @@
 
 # volcano-tts-helper-public
 
+<p align="center">
+  <img src="docs/banner.svg" alt="volcano-tts-helper-public banner" width="100%">
+</p>
+
+
 [![GitHub stars](https://img.shields.io/github/stars/mrdoudou1/volcano-tts-helper-public?style=flat-square)](https://github.com/mrdoudou1/volcano-tts-helper-public/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/mrdoudou1/volcano-tts-helper-public?style=flat-square)](https://github.com/mrdoudou1/volcano-tts-helper-public/network)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
