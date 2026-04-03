@@ -35,6 +35,7 @@
 [仓库结构](#structure) ·
 [README 预览区](#preview) ·
 [快速开始](#quickstart) ·
+[最小可运行示例](#minimal-example) ·
 [配置说明](#config) ·
 [豆包 2.0 用法](#doubao2) ·
 [推荐音色](#voices) ·
@@ -139,11 +140,18 @@
 
 ## 🗂️ 仓库结构
 
+> 现在仓库除了 README、skill、脚本，也额外补了一个 `defaults.example.json`，方便别人直接照着改。
+
 ```text
 volcano-tts-helper-public/
 ├─ README.md
+├─ .gitignore
+├─ docs/
+│  └─ banner.svg
 └─ volcano-tts-helper/
    ├─ SKILL.md
+   ├─ config/
+   │  └─ defaults.example.json
    ├─ references/
    │  ├─ local-tts.md
    │  └─ send-voice-policy.md
@@ -299,6 +307,61 @@ node /root/.openclaw/workspace/skills/volcano-tts-helper/scripts/synthesize-volc
 <p align="right"><a href="#top">回到顶部</a></p>
 
 ---
+
+---
+
+<a id="minimal-example"></a>
+
+## 🧪 最小可运行示例
+
+如果你只想先跑通，不想一上来配太多内容，可以按这个最小思路来：
+
+### 目录放置
+
+```text
+~/.openclaw/workspace/skills/volcano-tts-helper
+```
+
+### 准备默认风格示例
+
+仓库已经附带：
+
+```text
+volcano-tts-helper/config/defaults.example.json
+```
+
+你可以复制成：
+
+```text
+volcano-tts-helper/config/defaults.json
+```
+
+然后按自己的口味改成：
+
+```json
+{
+  "defaultInstruction": "请用温柔、自然、带一点陪伴感的语气说这段话。",
+  "defaultContextText": "这是日常聊天场景，整体自然、顺耳，不要太夸张。"
+}
+```
+
+### 最小测试命令
+
+```bash
+node /root/.openclaw/workspace/skills/volcano-tts-helper/scripts/synthesize-volcano-tts.mjs --text '你好呀，今天过得怎么样？'
+```
+
+### 跑通前提
+
+至少要保证：
+
+- `plugins.allow` 包含 `volcengine-tts`
+- `plugins.entries.volcengine-tts.enabled = true`
+- `plugins.entries.volcengine-tts.config` 已填入自己的 `appId / accessToken / voiceType`
+
+如果你已经有本地火山插件环境，这份仓库基本就是开箱即改。
+
+<p align="right"><a href="#top">回到顶部</a></p>
 
 <a id="config"></a>
 

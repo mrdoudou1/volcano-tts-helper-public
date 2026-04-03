@@ -1,16 +1,21 @@
-# runtime / secrets
-*.log
-*.tmp
-*.mp3
-*.wav
+# Node
+node_modules/
+
+# Local config / secrets
 .env
 .env.*
+*.key
+*.pem
+*.token
 
-# local outputs
-tmp/
-output/
-
-# macOS / editor
+# OS
 .DS_Store
+Thumbs.db
+
+# Editor
 .vscode/
 .idea/
+
+# Temp
+*.log
+tmp/
