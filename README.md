@@ -477,55 +477,29 @@ openclaw gateway restart
 
 ## 🎧 推荐音色
 
-### 💞 陪伴 / 情侣感
+如果你只是想先选一个顺手的，不想一上来就翻完整音色表，可以先从下面这份开始。
 
-优先推荐：
-
-- 邻家女孩 2.0
-- 魅力女友 2.0
-- 小何 2.0
-- 温柔淑女
-- 甜宠少御
-
-### 🙂 正常日常聊天
-
-优先推荐：
-
-- 小何 2.0
-- Vivi 2.0
-- 开朗青年
-- 儒雅青年
-
-### 🍬 可爱 / 软萌
-
-优先推荐：
-
-- 撒娇学妹 2.0
-- 甜美小源 2.0
-- 甜美桃子 2.0
-- 小萝莉
-
-### 🕶️ 成熟稳重 / 男声
-
-优先推荐：
-
-- 擎苍
-- 霸气青叔
-- 儒雅逸辰 2.0
-- 刘飞 2.0
+| 场景 | 优先推荐 | 说明 |
+|------|----------|------|
+| 陪伴 / 情侣感 | 邻家女孩 2.0 / 魅力女友 2.0 / 小何 2.0 / 温柔淑女 / 甜宠少御 | 更适合亲密感、自然聊天、温柔陪伴 |
+| 日常聊天 | 小何 2.0 / Vivi 2.0 / 开朗青年 / 儒雅青年 | 稳、自然、泛用性高 |
+| 可爱 / 软萌 | 撒娇学妹 2.0 / 甜美小源 2.0 / 甜美桃子 2.0 / 小萝莉 | 更甜、更轻、更偏可爱向 |
+| 成熟 / 男声 | 擎苍 / 霸气青叔 / 儒雅逸辰 2.0 / 刘飞 2.0 | 更稳、更沉、更适合成熟风格 |
 
 ### 🏷️ 常见中文昵称示例
 
-- 温柔淑女 → `BV104_streaming`
-- 甜宠少御 → `BV113_streaming`
-- 开朗青年 → `BV004_streaming`
-- 儒雅青年 → `BV102_streaming`
-- 擎苍 → `BV701_streaming`
-- 小何 2.0 → `zh_female_xiaohe_uranus_bigtts`
-- Vivi 2.0 → `zh_female_vv_uranus_bigtts`
-- 邻家女孩 2.0 → `zh_female_linjianvhai_uranus_bigtts`
-- 魅力女友 2.0 → `zh_female_meilinvyou_uranus_bigtts`
-- 甜美小源 2.0 → `zh_female_tianmeixiaoyuan_uranus_bigtts`
+| 中文昵称 | voiceType |
+|----------|-----------|
+| 温柔淑女 | `BV104_streaming` |
+| 甜宠少御 | `BV113_streaming` |
+| 开朗青年 | `BV004_streaming` |
+| 儒雅青年 | `BV102_streaming` |
+| 擎苍 | `BV701_streaming` |
+| 小何 2.0 | `zh_female_xiaohe_uranus_bigtts` |
+| Vivi 2.0 | `zh_female_vv_uranus_bigtts` |
+| 邻家女孩 2.0 | `zh_female_linjianvhai_uranus_bigtts` |
+| 魅力女友 2.0 | `zh_female_meilinvyou_uranus_bigtts` |
+| 甜美小源 2.0 | `zh_female_tianmeixiaoyuan_uranus_bigtts` |
 
 完整映射请直接看：
 
