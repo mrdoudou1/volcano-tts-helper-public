@@ -223,7 +223,7 @@ volcano-tts-helper-public/
 
 ## 🚀 快速开始
 
-### 第 1 步：把 skill 放进工作区
+### 1️⃣ 第 1 步：把 skill 放进工作区
 
 把 `volcano-tts-helper/` 放到你的 OpenClaw workspace：
 
@@ -231,7 +231,7 @@ volcano-tts-helper-public/
 ~/.openclaw/workspace/skills/volcano-tts-helper
 ```
 
-### 第 2 步：准备火山插件配置
+### 2️⃣ 第 2 步：准备火山插件配置
 
 你需要在 OpenClaw 主配置里启用本地插件，例如：
 
@@ -251,7 +251,7 @@ volcano-tts-helper-public/
 - `volumeRatio`
 - `language`
 
-### 第 3 步：建议保留合法内置 provider 兜底
+### 3️⃣ 第 3 步：建议保留合法内置 provider 兜底
 
 比较稳的做法是：
 
@@ -260,7 +260,7 @@ volcano-tts-helper-public/
 
 不要一上来就把系统主 provider 硬改成一个不被主流程识别的值，否则更容易把整体 TTS 行为搞乱。
 
-### 第 4 步：可选配置默认风格
+### 4️⃣ 第 4 步：可选配置默认风格
 
 你可以增加：
 
@@ -277,13 +277,13 @@ volcano-tts-helper-public/
 volcano-tts-helper/config/defaults.json
 ```
 
-### 第 5 步：重启网关
+### 5️⃣ 第 5 步：重启网关
 
 ```bash
 openclaw gateway restart
 ```
 
-### 第 6 步：测试本地合成
+### 6️⃣ 第 6 步：测试本地合成
 
 ```bash
 node /root/.openclaw/workspace/skills/volcano-tts-helper/scripts/synthesize-volcano-tts.mjs --text '你好呀，今天想让我陪你做什么？'
@@ -477,7 +477,7 @@ openclaw gateway restart
 
 ## 🎧 推荐音色
 
-### 陪伴 / 情侣感
+### 💞 陪伴 / 情侣感
 
 优先推荐：
 
@@ -487,7 +487,7 @@ openclaw gateway restart
 - 温柔淑女
 - 甜宠少御
 
-### 正常日常聊天
+### 🙂 正常日常聊天
 
 优先推荐：
 
@@ -496,7 +496,7 @@ openclaw gateway restart
 - 开朗青年
 - 儒雅青年
 
-### 可爱 / 软萌
+### 🍬 可爱 / 软萌
 
 优先推荐：
 
@@ -505,7 +505,7 @@ openclaw gateway restart
 - 甜美桃子 2.0
 - 小萝莉
 
-### 成熟稳重 / 男声
+### 🕶️ 成熟稳重 / 男声
 
 优先推荐：
 
@@ -514,7 +514,7 @@ openclaw gateway restart
 - 儒雅逸辰 2.0
 - 刘飞 2.0
 
-### 常见中文昵称示例
+### 🏷️ 常见中文昵称示例
 
 - 温柔淑女 → `BV104_streaming`
 - 甜宠少御 → `BV113_streaming`
@@ -541,6 +541,8 @@ openclaw gateway restart
 
 ### 1. 为什么不把 instruction / contextText 直接写进 openclaw.json？
 
+> 因为这样最容易踩 schema 校验的坑。
+
 因为插件 schema 很可能限制了额外字段，直接塞进去容易报错。
 
 更稳的做法是：
@@ -550,6 +552,8 @@ openclaw gateway restart
 
 ### 2. 改完配置后一定要重启吗？
 
+> 不一定每次都必须，但为了省心，建议改完就重启一次。
+
 严格说不是所有改动都必须重启，但为了避免你以为生效了其实没生效，**建议改完就重启一次**。
 
 ```bash
@@ -557,6 +561,8 @@ openclaw gateway restart
 ```
 
 ### 3. 原生 TTS 和火山 TTS 怎么分工更合理？
+
+> 一个负责快，一个负责好，这样最稳。
 
 我更推荐：
 
@@ -566,6 +572,8 @@ openclaw gateway restart
 这样更稳，也更省事。
 
 ### 4. 这个仓库为什么不直接放完整可运行配置？
+
+> 因为公开仓库最怕把密钥和私有配置一起带出去。
 
 因为公开仓库最怕把：
 
