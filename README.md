@@ -1,30 +1,131 @@
+<a id="top"></a>
+
 # volcano-tts-helper-public
 
-公开版的 **OpenClaw 火山引擎 TTS helper skill**，专门用于在 OpenClaw 工作区里接入火山引擎 / 豆包语音合成能力，支持更自然、更有情绪的中文语音回复。
+[![GitHub stars](https://img.shields.io/github/stars/mrdoudou1/volcano-tts-helper-public?style=flat-square)](https://github.com/mrdoudou1/volcano-tts-helper-public/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/mrdoudou1/volcano-tts-helper-public?style=flat-square)](https://github.com/mrdoudou1/volcano-tts-helper-public/network)
+[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-skill-blue?style=flat-square)](https://github.com/openclaw/openclaw)
 
-这个仓库是**可公开分享的无敏感版本**：保留 skill、参考文档和本地合成脚本，不包含任何私密 token、账号配置或网关主配置。
+> 🗣️ 一个面向 **OpenClaw** 的公开版火山引擎 / 豆包 TTS helper skill。  
+> 🎙️ 用来整理 **音色映射、默认策略、本地合成脚本、2.0 能力说明**，方便自己复用，也方便别人直接拿去改。
 
-## 项目定位
+<p align="center">
+  <strong>适合：</strong> OpenClaw 语音回复、陪伴感 TTS、情侣感语音、豆包 2.0 音色、本地 mp3 合成、可公开分享的 skill 模板
+</p>
 
-适合这些场景：
+---
 
-- 想在 OpenClaw 里接入火山引擎 TTS
-- 想保留一套可复用、可公开分享的 skill 模板
-- 想做“陪伴感 / 情侣感 / 讲故事 / 角色感”更强的语音回复
-- 想使用豆包语音合成模型 2.0 的 instruction / contextText 能力
-- 想把本地最佳实践整理成一个干净的公开仓库
+## 🧭 目录
 
-## 特性
+[项目介绍](#intro) ·
+[适用场景](#scenes) ·
+[核心特性](#features) ·
+[仓库结构](#structure) ·
+[快速开始](#quickstart) ·
+[配置说明](#config) ·
+[豆包 2.0 用法](#doubao2) ·
+[推荐音色](#voices) ·
+[FAQ](#faq) ·
+[后续计划](#roadmap) ·
+[安全说明](#security) ·
+[致谢](#thanks)
 
-- **OpenClaw skill 化封装**：不是零散脚本，而是一套可维护的 skill 结构
-- **支持火山 / 豆包 2.0 能力**：可用自然语言控制语气、风格、陪伴感
-- **支持本地脚本合成 mp3**：适合调试、试听、导出本地语音文件
-- **支持默认风格配置**：可长期固定“温柔 / 撒娇 / 日常聊天”等说话方式
-- **支持中文昵称切音色**：方便把“温柔淑女 / 甜宠少御 / 邻家女孩 2.0”映射到 voiceType
-- **兼容 OpenClaw 主配置约束**：把默认 instruction / contextText 从主配置剥离，避免 schema 校验报错
-- **默认策略清晰**：日常直接发语音可优先原生 TTS，明确指定火山能力时再走本地脚本
+---
 
-## 仓库结构
+<a id="intro"></a>
+
+## 📖 项目介绍
+
+这个仓库是我整理出来的一套 **OpenClaw + 火山引擎 TTS** 公开版工作流。
+
+它不是官方 SDK，也不是一个完整插件市场项目，而是更偏实战一点的东西：
+
+- 把本地已经跑通的 **skill 结构** 整理出来
+- 把常用 **voiceType 映射** 和中文昵称整理出来
+- 把 **豆包语音合成模型 2.0** 的实际用法写清楚
+- 把“什么时候走原生 TTS，什么时候走火山脚本”这类策略沉淀下来
+
+如果你也在折腾这些：
+
+- OpenClaw 语音回复
+- 火山引擎 TTS 接入
+- 陪伴感 / 女友感 / 日常聊天风格
+- 本地脚本生成 mp3
+- 一套可以公开发 GitHub、不泄露配置的 skill 模板
+
+那这个仓库基本就是为这个用途准备的。
+
+<p align="right"><a href="#top">回到顶部</a></p>
+
+---
+
+<a id="scenes"></a>
+
+## 🎯 适用场景
+
+### 1. 想在 OpenClaw 里接火山 TTS
+
+你已经有 OpenClaw，在想怎么把火山 / 豆包语音能力接进去，并且希望它能长期维护，不是一次性的测试脚本。
+
+### 2. 想做更自然的语音回复
+
+比如：
+
+- 温柔聊天
+- 陪伴感回复
+- 情侣感语音
+- 讲故事 / 角色扮演
+- 比系统默认 TTS 更像真人说话
+
+### 3. 想用豆包语音合成模型 2.0
+
+尤其是：
+
+- instruction（自然语言控制语气）
+- contextText（给上下文）
+- 更自然的情绪和停顿
+- 更适合陪伴聊天的音色
+
+### 4. 想把本地经验整理成一个干净的公开仓库
+
+保留：
+
+- skill
+- 文档
+- 脚本
+- 映射表
+
+不公开：
+
+- appId
+- accessToken
+- openclaw 主配置
+- 私人账号信息
+
+<p align="right"><a href="#top">回到顶部</a></p>
+
+---
+
+<a id="features"></a>
+
+## ✨ 核心特性
+
+- **skill 化整理**：不是一堆散乱脚本，而是一套可维护的 OpenClaw skill 目录结构
+- **支持火山 / 豆包 2.0 能力**：不仅能换音色，还能用自然语言控制说话方式
+- **支持本地脚本合成 mp3**：方便试听、调试、导出本地语音文件
+- **默认风格分离**：把默认 instruction / contextText 从主配置拆出来，避开 schema 校验问题
+- **音色映射完整**：支持中文昵称 → voiceType，切换更方便
+- **默认策略清楚**：日常语音和高级火山链路分层明确
+- **公开版无敏感信息**：适合直接放 GitHub，不会把 token 和私有配置一起带出去
+
+<p align="right"><a href="#top">回到顶部</a></p>
+
+---
+
+<a id="structure"></a>
+
+## 🗂️ 仓库结构
 
 ```text
 volcano-tts-helper-public/
@@ -38,198 +139,317 @@ volcano-tts-helper-public/
       └─ synthesize-volcano-tts.mjs
 ```
 
-## 包含内容
+### 各文件作用
 
-### `volcano-tts-helper/SKILL.md`
+#### `volcano-tts-helper/SKILL.md`
 
-主 skill 文档，说明：
+主 skill 文档，定义：
 
-- 什么时候优先走火山 TTS
-- 什么时候回退到 OpenClaw 原生 `tts`
-- 如何切换音色 / 调整风格 / 修改默认策略
-- 配置文件分别放在哪里
-- 豆包语音合成模型 2.0 的推荐使用方式
+- 默认策略
+- 快速流程
+- 配置位置
+- 音色切换规则
+- 豆包 2.0 推荐用法
+- 默认风格放哪里
+- 改完后是否要重启
 
-### `volcano-tts-helper/references/local-tts.md`
+#### `volcano-tts-helper/references/local-tts.md`
 
-本地参考文档，包含：
+本地参考资料，内容比较全，主要包括：
 
-- OpenClaw 主配置路径说明
-- `voiceType / speedRatio / pitchRatio / volumeRatio` 对应字段
+- OpenClaw 主配置路径
+- voiceType / speedRatio / pitchRatio / volumeRatio 对应字段
 - 中文昵称 → voiceType 映射
 - 豆包语音合成模型 2.0 常用音色
 - 传统在线音色补充
 - emotion 参数参考
-- 常见陪伴感 / 男友感 / 女友感 / 可爱系音色建议
+- 常见陪伴感 / 男友感 / 女友感 / 可爱系音色推荐
 
-### `volcano-tts-helper/references/send-voice-policy.md`
+#### `volcano-tts-helper/references/send-voice-policy.md`
 
-语音发送策略说明，核心是：
+这个文件专门讲“**日常发语音怎么选路径**”。
 
-- 日常“念出来 / 发语音 / tts”优先原生工具，减少审批和 exec 依赖
-- 只有明确需要火山音色 / 本地 mp3 / 2.0 高级能力时才走本地火山脚本
+核心思路：
 
-### `volcano-tts-helper/scripts/synthesize-volcano-tts.mjs`
+- 普通“念出来 / 发语音 / tts”优先原生工具
+- 明确指定火山音色 / 2.0 instruction / 本地 mp3 时再走火山本地脚本
+
+这样做的好处是：
+
+- 审批更少
+- 响应更快
+- 日常使用体验更稳
+
+#### `volcano-tts-helper/scripts/synthesize-volcano-tts.mjs`
 
 本地 Node.js 合成脚本，支持：
 
-- 从 `/root/.openclaw/openclaw.json` 读取火山 TTS 配置
-- 从 `config/defaults.json` 读取默认 instruction / contextText
-- 单次传参覆盖默认值
-- 自动输出 mp3 文件路径
+- 从 `/root/.openclaw/openclaw.json` 读取火山配置
+- 从 `defaults.json` 读取默认 instruction / contextText
+- 命令行临时参数覆盖默认值
+- 自动把结果写成 mp3 并输出路径
 
-## 不包含内容
+<p align="right"><a href="#top">回到顶部</a></p>
 
-本公开版**刻意不包含**以下敏感配置：
+---
 
-- `/root/.openclaw/openclaw.json`
-- `/root/.openclaw/settings/tts.json`
-- 任何 `appId`
-- 任何 `accessToken`
-- 任何 bot token / gateway token / git token
-- 任何用户私密账号信息
-- 任何私有工作区专用路径配置（除公开示例所需说明外）
+<a id="quickstart"></a>
 
-如果你要真正跑起来，需要自行准备并注入你自己的火山引擎配置。
+## 🚀 快速开始
 
-## 使用方式
+### 第 1 步：把 skill 放进工作区
 
-### 1. 放入 OpenClaw workspace
-
-把 `volcano-tts-helper/` 复制到你的工作区 skills 目录，例如：
+把 `volcano-tts-helper/` 放到你的 OpenClaw workspace：
 
 ```bash
 ~/.openclaw/workspace/skills/volcano-tts-helper
 ```
 
-### 2. 准备火山 TTS 插件配置
+### 第 2 步：准备火山插件配置
 
-在你的 OpenClaw 主配置里启用本地插件，例如：
+你需要在 OpenClaw 主配置里启用本地插件，例如：
 
-- `plugins.allow` 里包含 `volcengine-tts`
+- `plugins.allow` 包含 `volcengine-tts`
 - `plugins.entries.volcengine-tts.enabled = true`
-- `plugins.entries.volcengine-tts.config` 里写入：
-  - `appId`
-  - `accessToken`
-  - `cluster`
-  - `voiceType`
-  - `endpoint`
-  - `speedRatio`
-  - `pitchRatio`
-  - `volumeRatio`
-  - `language`
+- `plugins.entries.volcengine-tts.config` 中填写火山参数
 
-> 注意：`messages.tts.provider` 建议保持 OpenClaw 合法内置值（例如 `edge`），把火山链路作为本地插件 / 脚本工作流来用，而不是强行替代系统内置 provider。
+常见字段：
 
-### 3. 配置默认风格（可选）
+- `appId`
+- `accessToken`
+- `cluster`
+- `voiceType`
+- `endpoint`
+- `speedRatio`
+- `pitchRatio`
+- `volumeRatio`
+- `language`
 
-你可以增加一个本地文件：
+### 第 3 步：建议保留合法内置 provider 兜底
+
+比较稳的做法是：
+
+- `messages.tts.provider` 继续保持 OpenClaw 支持的合法值（例如 `edge`）
+- 火山 TTS 作为 **本地增强链路** 使用
+
+不要一上来就把系统主 provider 硬改成一个不被主流程识别的值，否则更容易把整体 TTS 行为搞乱。
+
+### 第 4 步：可选配置默认风格
+
+你可以增加：
 
 ```json
 {
   "defaultInstruction": "请用温柔、自然、带一点撒娇和陪伴感的语气说这段话。",
-  "defaultContextText": "这是亲密关系中的日常聊天场景，整体自然、顺耳、有陪伴感。"
+  "defaultContextText": "这是亲密关系里的日常聊天场景，整体自然、顺耳、有陪伴感。"
 }
 ```
 
-推荐文件位置：
+推荐位置：
 
 ```text
 volcano-tts-helper/config/defaults.json
 ```
 
-这样可以把长期默认提示词和上下文从 `openclaw.json` 分离出去，避免主配置 schema 校验时报：
+### 第 5 步：重启网关
 
-```text
-must NOT have additional properties
+```bash
+openclaw gateway restart
 ```
 
-### 4. 运行本地合成脚本
+### 第 6 步：测试本地合成
 
 ```bash
 node /root/.openclaw/workspace/skills/volcano-tts-helper/scripts/synthesize-volcano-tts.mjs --text '你好呀，今天想让我陪你做什么？'
 ```
 
-如果成功，会输出一个本地 mp3 文件路径。
+如果成功，脚本会输出一个本地 mp3 路径。
 
-## 2026-04 当前推荐策略
+<p align="right"><a href="#top">回到顶部</a></p>
 
-### 日常直接语音
+---
 
-当用户只是说：
+<a id="config"></a>
 
-- 念出来
-- 发语音
-- tts
-- 语音回复
-- 读给我听
+## ⚙️ 配置说明
 
-推荐优先：
+### 1. 主配置放什么
 
-- **OpenClaw 原生 `tts` 工具**
+主配置 `openclaw.json` 里建议只放 **插件合法字段**，比如：
 
-原因：
+- `voiceType`
+- `speedRatio`
+- `pitchRatio`
+- `volumeRatio`
+- `language`
+- `appId`
+- `accessToken`
+- `endpoint`
+- `cluster`
 
-- 更快
-- 不需要额外 `exec`
-- 审批更少
-- 更适合高频使用
+### 2. 默认风格放什么
 
-### 明确指定火山能力
+像下面这些，不建议直接写进插件主配置：
 
-当用户明确要求：
+- `instruction`
+- `prompt`
+- `contextText`
+- `context`
+- `emotion`
 
-- 火山 TTS
-- 指定火山音色
-- 指定 `voiceType`
-- 使用豆包 2.0 的 instruction
-- 使用 contextText / 引用上文
-- 生成本地 mp3 文件
+更稳的做法是单独放到：
 
-推荐走：
+```text
+volcano-tts-helper/config/defaults.json
+```
 
-- **本地火山脚本 / 本地火山 skill 工作流**
+例如：
 
-## 豆包语音合成模型 2.0 用法
+```json
+{
+  "defaultInstruction": "请用有一点激动开心、软软撒娇的台湾女生语气说这段话。",
+  "defaultContextText": ""
+}
+```
 
-当前更推荐把 2.0 音色理解成“**音色 + 自然语言说话指令**”，而不是只调传统比例参数。
+### 3. 为什么要分开
+
+因为很多插件 schema 会限制：
+
+```json
+{
+  "additionalProperties": false
+}
+```
+
+如果你直接往 `plugins.entries.volcengine-tts.config` 里塞没声明的字段，容易触发：
+
+- `openclaw doctor` 报错
+- 配置校验失败
+- 网关无法正常加载配置
+
+### 4. 改完是否要重启
+
+通常建议重启。尤其是改了这些以后：
+
+- `voiceType`
+- `speedRatio`
+- `pitchRatio`
+- `volumeRatio`
+- 插件入口配置
+- 插件代码
+- `defaults.json`
+
+命令：
+
+```bash
+openclaw gateway restart
+```
+
+<p align="right"><a href="#top">回到顶部</a></p>
+
+---
+
+<a id="doubao2"></a>
+
+## 🎤 豆包语音合成模型 2.0 用法
+
+这一块其实是我比较看重的，因为 2.0 音色和传统音色的思路不太一样。
+
+传统思路往往是：
+
+- 选个音色
+- 调语速
+- 调音调
+- 调音量
+
+但 2.0 更好的玩法是：
+
+- **先选对音色**
+- **再写自然语言 instruction**
+- 必要时补 `contextText`
+- 把比例参数当微调，不当主控制方式
 
 ### 核心能力
 
 #### 1. 语音指令
 
-可以直接写自然语言来描述说话方式，例如：
+可以直接写你想让它怎么说：
 
 - 温柔一点
 - 带一点撒娇
 - 像悄悄话一样
 - 更像女友聊天
-- 带一点开心和激动
+- 低沉一点
+- 有点开心和激动
 - 用 ASMR 的感觉说
 
 #### 2. 引用上文
 
-把前文作为语境输入，帮助模型承接情绪、停顿和说话氛围，但不直接朗读前文。
-
 适合：
 
 - 多轮聊天
-- 连续语音回复
-- 陪伴感场景
 - 承接上一句情绪
+- 连续发语音
+- 陪伴感对话
+
+它的作用不是把上文读出来，而是让模型理解“现在该怎么接着说”。
 
 #### 3. 语音标签
 
-用于局部细节增强，例如：
+这是更细一点的增强能力，适合：
 
-- 表情
-- 动作
-- 心理活动
-- 旁白感
+- 某一句想更有情绪
+- 想加一点旁白 / 动作 / 心理活动感
+- 剧情演绎或角色感更强的场景
 
-> 注意：语音标签并不是所有 2.0 音色都支持，不建议默认全开。
+但别默认全开，因为不是所有音色都支持。
 
-## 推荐音色
+### 当前推荐策略
+
+#### 日常直接语音
+
+如果用户只是说：
+
+- 念出来
+- 发语音
+- 语音回复
+- tts
+- 读给我听
+
+优先：
+
+- **OpenClaw 原生 `tts` 工具**
+
+因为：
+
+- 更快
+- 不需要额外 exec
+- 审批更少
+- 高频使用更顺手
+
+#### 明确指定火山能力
+
+如果用户明确要求：
+
+- 火山 TTS
+- 指定火山音色
+- 指定 voiceType
+- 使用 2.0 instruction
+- 使用 contextText
+- 导出本地 mp3
+
+再走：
+
+- **本地火山脚本 / 本地火山 skill 工作流**
+
+<p align="right"><a href="#top">回到顶部</a></p>
+
+---
+
+<a id="voices"></a>
+
+## 🎧 推荐音色
 
 ### 陪伴 / 情侣感
 
@@ -268,7 +488,7 @@ node /root/.openclaw/workspace/skills/volcano-tts-helper/scripts/synthesize-volc
 - 儒雅逸辰 2.0
 - 刘飞 2.0
 
-## 常见中文昵称示例
+### 常见中文昵称示例
 
 - 温柔淑女 → `BV104_streaming`
 - 甜宠少御 → `BV113_streaming`
@@ -281,96 +501,115 @@ node /root/.openclaw/workspace/skills/volcano-tts-helper/scripts/synthesize-volc
 - 魅力女友 2.0 → `zh_female_meilinvyou_uranus_bigtts`
 - 甜美小源 2.0 → `zh_female_tianmeixiaoyuan_uranus_bigtts`
 
-更完整的音色表请查看：
+完整映射请直接看：
 
 - `volcano-tts-helper/references/local-tts.md`
 
-## 常见问题
+<p align="right"><a href="#top">回到顶部</a></p>
+
+---
+
+<a id="faq"></a>
+
+## ❓ FAQ
 
 ### 1. 为什么不把 instruction / contextText 直接写进 openclaw.json？
 
-因为很多插件 schema 会设置：
+因为插件 schema 很可能限制了额外字段，直接塞进去容易报错。
 
-```json
-{
-  "additionalProperties": false
-}
-```
+更稳的做法是：
 
-如果直接往 `plugins.entries.volcengine-tts.config` 里塞未声明字段，可能导致：
+- 合法字段放 `openclaw.json`
+- 默认 instruction / contextText 放 `defaults.json`
 
-- `openclaw doctor` 报错
-- 网关配置校验失败
-- 网关启动异常
+### 2. 改完配置后一定要重启吗？
 
-所以更稳的做法是：
-
-- 合法字段继续放 `openclaw.json`
-- 默认提示词和上下文单独放 `defaults.json`
-
-### 2. 改完配置后要不要重启？
-
-通常建议重启：
+严格说不是所有改动都必须重启，但为了避免你以为生效了其实没生效，**建议改完就重启一次**。
 
 ```bash
 openclaw gateway restart
 ```
 
-如果你改了这些内容，最好重启：
+### 3. 原生 TTS 和火山 TTS 怎么分工更合理？
 
-- `voiceType`
-- `speedRatio`
-- `pitchRatio`
-- `volumeRatio`
-- 插件入口配置
-- 插件代码
-- `defaults.json`（为了插件主链路稳定读取）
+我更推荐：
 
-### 3. 原生 TTS 和火山 TTS 应该怎么分工？
+- **原生 TTS**：负责高频、快速、少审批
+- **火山 TTS**：负责高质量、强风格、需要指定音色或 2.0 能力的场景
 
-比较稳的思路是：
+这样更稳，也更省事。
 
-- **系统内置 provider**：保留合法值，作为兜底
-- **火山 TTS**：作为高质量、本地增强的语音工作流
+### 4. 这个仓库为什么不直接放完整可运行配置？
 
-这样兼顾：
+因为公开仓库最怕把：
 
-- 系统稳定性
-- 高级语音能力
-- 审批成本
-- 调试灵活性
+- token
+- appId
+- accessToken
+- bot 配置
+- 私有路径
 
-## 适合继续扩展的方向
+这些一起发出去。这个仓库的目标是：**公开结构和方法，不公开你的密钥和私人配置。**
 
-这个公开仓库后续可以继续补：
+<p align="right"><a href="#top">回到顶部</a></p>
+
+---
+
+<a id="roadmap"></a>
+
+## 🛣️ 后续计划
+
+后面有空的话，我想继续补这些：
 
 - `config/defaults.example.json`
-- 更完整的 README 示例截图
-- 常见 OpenClaw 集成方式
-- 常见报错与排障手册
-- 更多官方音色更新
-- 直接发送语音到 Telegram / WeChat 的完整工作流示例
+- README 截图或流程图
+- 常见 OpenClaw 集成案例
+- Telegram / WeChat 直接发语音示例
+- 常见报错排障手册
+- 更多官方新音色更新
 
-## 安全提醒
+如果你也在用这套，欢迎直接 fork 或提 PR。
 
-请不要把以下内容提交到公开仓库：
+<p align="right"><a href="#top">回到顶部</a></p>
 
-- 火山引擎 appId / accessToken
+---
+
+<a id="security"></a>
+
+## 🔐 安全说明
+
+请不要把这些东西提交到公开仓库：
+
+- 火山引擎 `appId` / `accessToken`
 - OpenClaw 网关 token
 - Telegram / WeChat bot token
 - 私人聊天记录
 - 任何真实账号密钥
 
-如果你要分享可运行示例，建议只保留：
+如果你要分享一个能复用的版本，建议只保留：
 
 - 文档
 - skill
-- 映射表
 - 脚本模板
+- 映射表
 - `.example` 配置文件
 
-## 致谢
+<p align="right"><a href="#top">回到顶部</a></p>
 
-这个仓库用于整理和公开分享 OpenClaw + 火山引擎 TTS 的本地最佳实践，目标不是做一个“官方 SDK”，而是做一套**真正能给 AI 助手拿来用、拿来改、拿来复用**的工作流模板。
+---
 
-如果你也在折腾 OpenClaw 语音、陪伴感 TTS、豆包 2.0 音色，欢迎 fork、补充、改进。
+<a id="thanks"></a>
+
+## 🙌 致谢
+
+这个仓库主要是为了把 **OpenClaw + 火山引擎 TTS** 这套本地实践整理出来，省得每次都从零重新摸。
+
+它不是那种“写得很标准但根本没人真拿来用”的文档，我更希望它是：
+
+- 自己以后还会回来翻
+- 别人 fork 之后能真跑起来
+- 遇到问题时能直接帮上忙
+
+如果你也在折腾 OpenClaw 语音、陪伴感 TTS、豆包 2.0 音色，欢迎拿去改。
+
+<p align="right"><a href="#top">回到顶部</a></p>
