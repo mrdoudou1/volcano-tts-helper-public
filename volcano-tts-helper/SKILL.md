@@ -352,8 +352,8 @@ systemctl --user restart openclaw-gateway.service
       "volcengine-tts": {
         "enabled": true,
         "config": {
-          "appId": "<your-app-id>",
-          "accessToken": "<your-access-token>",
+          "appId": "你的 appId",
+          "accessToken": "你的 accessToken",
           "cluster": "volcano_tts",
           "voiceType": "zh_female_meilinvyou_uranus_bigtts",
           "endpoint": "https://openspeech.bytedance.com/api/v1/tts",
@@ -477,7 +477,7 @@ openclaw gateway restart
 1. 准备本地插件目录：`/root/.openclaw/extensions/volcengine-tts`
 2. 在 `openclaw.json` 的 `plugins.allow` 里加入 `volcengine-tts`
 3. 写好 `plugins.entries.volcengine-tts.enabled = true`
-4. 配好你自己的 `appId / accessToken / endpoint / cluster / voiceType`
+4. 配好 `appId / accessToken / endpoint / cluster / voiceType`
 5. 保持 `messages.tts.provider` 为系统支持的合法值（建议 `edge`）
 6. 可选：在 `/root/.openclaw/settings/tts.json` 里标记当前本地默认工作流为 `volcengine-tts`
 7. 执行 `openclaw gateway restart`

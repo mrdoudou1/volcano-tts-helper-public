@@ -61,7 +61,7 @@ function loadDefaults() {
 function loadConfig() {
   const cfgPath = '/root/.openclaw/openclaw.json';
   const raw = JSON.parse(fs.readFileSync(cfgPath, 'utf8'));
-  const pcfg = raw?.plugins?.entries?.['volcengine-tts']?.config || {};
+  const pcfg = raw?.messages?.tts?.providers?.['volcengine-tts'] || {};
   const defaults = loadDefaults();
   return {
     appId: pcfg.appId || '',
@@ -112,7 +112,7 @@ async function main() {
   const cfg = { ...loadConfig(), ...Object.fromEntries(Object.entries(args).filter(([,v]) => v !== '')) };
   const text = args.text || '';
   if (!text.trim()) throw new Error('Missing --text');
-  if (!cfg.appId || !cfg.accessToken) throw new Error('Volcano TTS missing appId/accessToken in /root/.openclaw/openclaw.json');
+  if (!cfg.appId || !cfg.accessToken) throw new Error('Volcano TTS missing appId/accessToken in messages.tts.providers.volcengine-tts');
 
   const requestText = buildRequestText(text);
   const extraRequestFields = buildExtraRequestFields(cfg);
